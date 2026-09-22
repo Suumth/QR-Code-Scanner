@@ -1,0 +1,43 @@
+{
+  "name": "qr-code-scanner",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "cf-typegen": "wrangler types",
+    "dev": "vite",
+    "e2e": "node scripts/run-e2e.mjs",
+    "e2e:signal": "node scripts/verify-e2e-runner-signal.mjs --cleanup-self-test && node scripts/verify-e2e-runner-signal.mjs --early-wrapper-crash-self-test && node scripts/verify-e2e-runner-signal.mjs --normal-shutdown-self-test && node scripts/verify-e2e-runner-signal.mjs --disconnected-server-self-test && node scripts/verify-e2e-runner-signal.mjs --crashed-worker-shutdown-self-test && node scripts/verify-e2e-runner-signal.mjs --crashed-runtime-self-test && node scripts/verify-e2e-runner-signal.mjs --stopped-server-self-test && node scripts/verify-e2e-runner-signal.mjs --crashed-server-self-test && node scripts/verify-e2e-runner-signal.mjs SIGTERM && node scripts/verify-e2e-runner-signal.mjs SIGINT",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "typecheck": "tsc -b --pretty false --force"
+  },
+  "dependencies": {
+    "@cloudflare/vite-plugin": "1.53.0",
+    "@vitejs/plugin-react": "6.0.5",
+    "@zxing/browser": "0.2.1",
+    "fflate": "0.8.3",
+    "qrcode.react": "4.2.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "vite": "8.2.1"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.22.0",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.62.1",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.2",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "10.8.1",
+    "globals": "16.5.0",
+    "jsdom": "30.0.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.67.0",
+    "vitest": "4.1.11",
+    "wrangler": "4.124.0"
+  }
+}

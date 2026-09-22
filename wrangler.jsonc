@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "qr-code-scanner",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-08-19",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "event-vouchers",
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "ADMIN_LOGIN_RATE_LIMITER",
+      "namespace_id": "22022",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    },
+    {
+      // Event-scoped, location-local login protection. Valid and failed
+      // credential attempts both count so the PIN is never verified after the
+      // limit is exhausted. 30/minute leaves room for several event devices.
+      "name": "TEAM_LOGIN_RATE_LIMITER",
+      "namespace_id": "22023",
+      "simple": {
+        "limit": 30,
+        "period": 60
+      }
+    }
+  ],
+  "assets": {
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  }
+}
